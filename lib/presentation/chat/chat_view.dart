@@ -247,13 +247,6 @@ class _ChatViewState extends State<ChatView> {
           ),
         ),
         const PopupMenuItem(
-          value: "refresh",
-          child: ListTile(
-            leading: Icon(Icons.refresh),
-            title: Text('Refresh'),
-          ),
-        ),
-        const PopupMenuItem(
           value: "delete",
           child: ListTile(
             leading: Icon(Icons.delete),
