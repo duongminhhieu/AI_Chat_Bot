@@ -12,4 +12,7 @@ class Endpoints {
 
   // booking endpoints
   static const String getPosts = baseUrl + "/posts";
+
+  // chat endpoints
+  static const String sendMessage = "https://api.openai.com/v1/chat/completions";
 }

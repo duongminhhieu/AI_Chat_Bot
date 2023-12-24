@@ -12,6 +12,8 @@ import 'package:boilerplate/domain/usecase/user/login_usecase.dart';
 import 'package:boilerplate/domain/usecase/user/save_login_in_status_usecase.dart';
 
 import '../../../di/service_locator.dart';
+import '../../repository/chat/chat_repository.dart';
+import '../../usecase/chat/send_message_usecase.dart';
 
 mixin UseCaseModule {
   static Future<void> configureUseCaseModuleInjection() async {
@@ -42,5 +44,11 @@ mixin UseCaseModule {
     getIt.registerSingleton<DeletePostUseCase>(
       DeletePostUseCase(getIt<PostRepository>()),
     );
+
+    // chat:--------------------------------------------------------------------
+    getIt.registerSingleton<SendMessageUseCase>(
+      SendMessageUseCase(getIt<ChatRepository>()),
+    );
+
   }
 }
