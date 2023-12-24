@@ -34,10 +34,10 @@ abstract class _ChatStore with Store {
       ObservableFuture<Message?>(emptyMessageResponse);
 
   @observable
-  late List<Conversation> conversations = [];
+  List<Conversation> conversations = [];
 
   @observable
-  late int currentConversationIndex = 0;
+  int currentConversationIndex = 0;
 
   @observable
   bool success = false;
@@ -89,7 +89,7 @@ abstract class _ChatStore with Store {
 
   @observable
   Sender _userSender =
-      Sender(name: 'System', avatarAssetPath: Assets.personIcon);
+      Sender(name: 'User', avatarAssetPath: Assets.personIcon);
 
   @computed
   Sender get userSender => _userSender;
@@ -140,7 +140,7 @@ abstract class _ChatStore with Store {
   @action
   void addEmptyConversation(String title) {
     if (title == '') {
-      title = 'new conversation ${conversations.length}';
+      title = 'New conversation ${conversations.length}';
     }
     conversations.add(Conversation(messages: [], title: title));
     currentConversationIndex = conversations.length - 1;
@@ -175,7 +175,7 @@ abstract class _ChatStore with Store {
   void renameConversation(String title) {
     if (title == "") {
       // no title, use default title
-      title = 'new conversation $currentConversationIndex';
+      title = 'New conversation $currentConversationIndex';
     }
     conversations[currentConversationIndex].title = title;
   }
@@ -195,8 +195,21 @@ abstract class _ChatStore with Store {
 
   @action
   Future<void> sendMessage() async {
-    final future =
-        _sendMessageUseCase.call(params: currentConversationMessages);
+
+    List<Map<String, String>> messages = [
+      {
+        'role': "system",
+        'content': "",
+      }
+    ];
+    for (Message message in conversations[currentConversationIndex].messages) {
+      messages.add({
+        'role': message.senderId == 'User' ? 'user' : 'system',
+        'content': message.content
+      });
+    }
+
+    final future = _sendMessageUseCase.call(params: messages);
     fetchMessageFuture = ObservableFuture(future);
 
     future.then((assistantMessage) {
@@ -211,7 +224,7 @@ abstract class _ChatStore with Store {
   // general methods:-----------------------------------------------------------
   void init() async {
     // getting current language from shared preference
-    conversations.add(Conversation(messages: [], title: 'new conversation'));
+    conversations.add(Conversation(messages: [], title: 'New conversation'));
   }
 
   // dispose:-------------------------------------------------------------------
