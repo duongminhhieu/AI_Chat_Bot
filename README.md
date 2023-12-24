@@ -1,63 +1,37 @@
-# This branch is still under development
+# Simple ChatGPT Flutter Version
+
+This is a simple version of **ChatGPT in Flutter**, using your own API key. With this app, you can chat in app with ChatGPT.
 
 
-# Boilerplate Project
+|  |  |  |
+| - | - | - |
+| ![image](https://github.com/duongminhhieu/AI_Chat_Bot/assets/76527212/3d775c83-f740-4dac-be60-4b2de39e49ac) | ![image](https://github.com/duongminhhieu/AI_Chat_Bot/assets/76527212/f64cf8fc-2f1a-42fd-8bfb-7973fa7a11a1) | ![image](https://github.com/duongminhhieu/AI_Chat_Bot/assets/76527212/e18bfea3-cfd6-46c4-84a2-948baa195717) |
 
-A boilerplate project created in flutter using MobX and Provider. Boilerplate supports both web and mobile, clone the appropriate branches mentioned below:
-
-* For Mobile: https://github.com/zubairehman/flutter-boilerplate-project/tree/master (stable channel)
-* For Web: https://github.com/zubairehman/flutter-boilerplate-project/tree/feature/web-support (beta channel)
 
 ## Getting Started
+### Prerequisites
+Before you start, make sure you have the following:
 
-The Boilerplate contains the minimal implementation required to create a new library or project. The repository code is preloaded with some basic components like basic app architecture, app theme, constants and required dependencies to create a new project. By using boiler plate code as standard initializer, we can have same patterns in all the projects that will inherit it. This will also help in reducing setup & development time by allowing you to use same code pattern and avoid re-writing from scratch.
+Flutter installed on your machine. You can follow the instructions here.
+An API key for the OpenAI ChatGPT language model. You can apply for an API key here.
+### Installation
+Clone the repository to your local machine.
+Run the app on your device or emulator using flutter run.
+You will also need the Xcode to simulate the ios environment.
 
-## How to Use 
+'''
+flutter run
+'''
 
-**Step 1:**
+## Features
+The app includes the following features:
 
-Download or clone this repo by using the link below:
+- Chat with ChatGPT using the OpenAI API
+- Display chat history
+- Add new conversations
+- Rename existing conversations
+- Delete conversations
 
-```
-https://github.com/zubairehman/flutter-boilerplate-project.git
-```
-
-**Step 2:**
-
-Go to project root and execute the following command in console to get the required dependencies: 
-
-```
-flutter pub get 
-```
-
-**Step 3:**
-
-This project uses `inject` library that works with code generation, execute the following command to generate files:
-
-```
-flutter packages pub run build_runner build --delete-conflicting-outputs
-```
-
-or watch command in order to keep the source code synced automatically:
-
-```
-flutter packages pub run build_runner watch
-```
-
-## Hide Generated Files
-
-In-order to hide generated files, navigate to `Android Studio` -> `Preferences` -> `Editor` -> `File Types` and paste the below lines under `ignore files and folders` section:
-
-```
-*.inject.summary;*.inject.dart;*.g.dart;
-```
-
-In Visual Studio Code, navigate to `Preferences` -> `Settings` and search for `Files:Exclude`. Add the following patterns:
-```
-**/*.inject.summary
-**/*.inject.dart
-**/*.g.dart
-```
 
 ## Boilerplate Features:
 
@@ -79,11 +53,6 @@ In Visual Studio Code, navigate to `Preferences` -> `Settings` and search for `F
 * Dark Theme Support (new)
 * Multilingual Support (new)
 * Provider example (new)
-
-### Up-Coming Features:
-
-* Connectivity Support
-* Background Fetch Support
 
 ### Libraries & Tools Used
 
@@ -115,11 +84,11 @@ Here is the folder structure we have been using in this project
 ```
 lib/
 |- constants/
+|- core/
 |- data/
-|- stores/
-|- ui/
+|- domain/
+|- presentation/
 |- utils/
-|- widgets/
 |- main.dart
 |- routes.dart
 ```
@@ -221,79 +190,7 @@ widgets/
 |- progress_indicator.dart
 ```
 
-### Routes
+### License
+MIT License
 
-This file contains all the routes for your application.
-
-```dart
-import 'package:flutter/material.dart';
-
-import 'ui/post/post_list.dart';
-import 'ui/login/login.dart';
-import 'ui/splash/splash.dart';
-
-class Routes {
-  Routes._();
-
-  //static variables
-  static const String splash = '/splash';
-  static const String login = '/login';
-  static const String home = '/post';
-
-  static final routes = <String, WidgetBuilder>{
-    splash: (BuildContext context) => SplashScreen(),
-    login: (BuildContext context) => LoginScreen(),
-    home: (BuildContext context) => HomeScreen(),
-  };
-}
-```
-
-### Main
-
-This is the starting point of the application. All the application level configurations are defined in this file i.e, theme, routes, title, orientation etc.
-
-```dart
-import 'package:boilerplate/routes.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-
-import 'constants/app_theme.dart';
-import 'constants/strings.dart';
-import 'ui/splash/splash.dart';
-
-void main() {
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-    DeviceOrientation.landscapeRight,
-    DeviceOrientation.landscapeLeft,
-  ]).then((_) {
-    runApp(MyApp());
-  });
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: Strings.appName,
-      theme: themeData,
-      routes: Routes.routes,
-      home: SplashScreen(),
-    );
-  }
-}
-```
-
-## Wiki
-
-Checkout [wiki](https://github.com/zubairehman/flutter-boilerplate-project/wiki) for more info
-
-## Conclusion
-
-I will be happy to answer any questions that you may have on this approach, and if you want to lend a hand with the boilerplate then please feel free to submit an issue and/or pull request 🙂
-
-Again to note, this is example can appear as over-architectured for what it is - but it is an example only. If you liked my work, don’t forget to ⭐ star the repo to show your support.
 
