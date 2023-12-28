@@ -2,6 +2,8 @@
 
 This is a simple version of **ChatGPT in Flutter**, using your own API key. With this app, you can chat in app with ChatGPT.
 
+Demo: https://youtu.be/YkRtgTjhAb0?si=v6jsem3ws26Ytt1l
+
 
 |  |  |  |
 | - | - | - |
